@@ -7,6 +7,11 @@
 
 import Foundation
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 extension View {
   public func debugAction(_ closure: () -> Void) -> Self {
@@ -61,6 +66,7 @@ extension View {
 //            .landscape()
 //    }
 // }
+#if os(iOS)
 struct LandscapeModifier: ViewModifier {
     let height = UIScreen.main.bounds.width
     let width = UIScreen.main.bounds.height
@@ -86,3 +92,4 @@ extension View {
         self.modifier(LandscapeModifier())
     }
 }
+#endif
